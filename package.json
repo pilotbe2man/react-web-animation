@@ -1,0 +1,116 @@
+{
+  "name": "react-web-animation",
+  "version": "0.0.0-development",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bringking/react-web-animation.git"
+  },
+  "keywords": [
+    "react",
+    "animation",
+    "web-animations-api"
+  ],
+  "files": [
+    "dist",
+    "lib",
+    "src"
+  ],
+  "author": "Charles King <bringking@gmail.com> (http://github.com/bringking)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bringking/react-web-animation/issues"
+  },
+  "homepage": "https://github.com/bringking/react-web-animation",
+  "scripts": {
+    "lint": "eslint src test",
+    "test": "NODE_ENV=test jest --coverage --no-cache",
+    "build:lib": "babel src --out-dir lib --ignore test.js",
+    "build:umd": "cross-env NODE_ENV=development webpack src/index.js dist/react-web-animation.js",
+    "build:umd:min": "cross-env NODE_ENV=production webpack src/index.js dist/react-web-animation.min.js",
+    "build:all": "yarn build:lib && yarn build:umd && yarn build:umd:min",
+    "semantic-release": "semantic-release pre && yarn build:all && npm publish && semantic-release post"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.0",
+    "babel-jest": "^21.0.2",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-lodash": "^3.2.11",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "chai": "*",
+    "cross-env": "^5.0.5",
+    "cz-customizable": "^5.2.0",
+    "enzyme": "^2.9.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-prettier": "^2.5.0",
+    "eslint-import-resolver-babel-module": "^3.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-prettier": "^2.2.0",
+    "eslint-plugin-react": "^7.3.0",
+    "eslint": "4.7.0",
+    "jest-cli": "^21.1.0",
+    "jest": "^21.1.0",
+    "lodash-webpack-plugin": "^0.11.4",
+    "prettier": "^1.7.0",
+    "react-addons-test-utils": "16.0.0-alpha.3",
+    "react-dom": "16.0.0-rc.3",
+    "react": "16.0.0-rc.3",
+    "semantic-release": "^8.0.0",
+    "shortid": "^2.2.8",
+    "source-map": "^0.5.7",
+    "webpack": "^3.6.0"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/!(*.test).js"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "dist/",
+      "lib/"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    }
+  },
+  "release": {
+    "analyzeCommits": {
+      "path": "./release/analyze-commits.js",
+      "minorTypes": [
+        "feat"
+      ],
+      "patchTypes": [
+        "fix",
+        "refactor",
+        "docs"
+      ]
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    },
+    "cz-customizable": {
+      "config": ".cz-config.js"
+    }
+  },
+  "peerDependencies": {
+    "prop-types": "^15.5.6",
+    "react": ">=0.14.0 <17.0.0",
+    "react-dom": ">=0.14.0 <17.0.0"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
